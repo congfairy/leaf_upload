@@ -10,17 +10,19 @@ from os.path import getsize
 
 GB = 1024 * 1024 * 1024
 
-@gen.coroutine
+#@gen.coroutine
 class UploadRequestHandler(tornado.web.RequestHandler):
     async def post(self):
         total_received = 0
         filepath = self.get_argument('targetpath')
-        if os.path.exists(targetdir):
+        print("filepath",filepath)
+        if os.path.exists(filepath):
              pass
         else:
-            os.makedirs(targetpath)
+            os.makedirs(filepath)
         f = open_file(filepath,'w')
-        chunk = self.get_body_argument("body")
+        chunk = self.get_body_argument('body')
+        print("sent",len(chunk))
         write_data(f,chunk) 
         put(f)
 
